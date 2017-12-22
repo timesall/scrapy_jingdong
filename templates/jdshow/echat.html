@@ -1,0 +1,39 @@
+<div class="class1">
+
+	<div id="stateBut" onclick="$use()" style="float: right">折叠</div>
+	<div id="class1content" style="overflow:hidden;">
+
+
+
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+        <div id="main" style="width: 1200px;height:400px;"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+    // myChart.showLoading();
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: '手机价格示意图'
+        },
+        tooltip: {},
+        legend: {
+            data:['手机']
+        },
+        xAxis: {
+            data: {{ names | safe }}
+        },
+        yAxis: {},
+        series: [{
+            name: '价格',
+            type: 'bar',
+            data: {{ prices | safe }}
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>

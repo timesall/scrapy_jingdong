@@ -1,0 +1,90 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+<script type="application/javascript" src="{% static 'js/jquery.min.js'%}"></script>
+<script type="application/javascript" src="{% static 'js/bootstrap.min.js'%}"></script>
+<script type="application/javascript" src="{% static 'js/echarts.js'%}"></script>
+<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/static/css/bootstrap-theme.min.css">
+{#    折叠窗口#}
+<style>
+* { margin:0; padding:0;}
+body { text-align:center; font:75% Verdana, Arial, Helvetica, sans-serif;}
+h1 { font:125% Arial, Helvetica, sans-serif; text-align:left; font-weight:bolder; background:#555;  padding:3px; display:block; color:#99CC00}
+.class1 {  position:relative; margin:0 auto; padding:5px; }
+span { position:absolute; right:10px; top:8px; cursor:pointer; color:yellow;}
+p { text-align:left; line-height:20px; background:#555; padding:3px; margin-top:5px; color:#99CC00}
+#class1content {overflow:hidden; }
+</style>
+<script>
+	function $(element){
+		return element = document.getElementById(element);
+	}
+	function $D(){
+		var d=$('class1content');
+		var h=d.offsetHeight;
+		var maxh=300;
+		function dmove(){
+		h+=50; //层展开速度
+			if(h>=maxh){
+{#				d.style.height='300px';#}
+				clearInterval(iIntervalId);
+			}
+			else{
+				d.style.display='block';
+{#				d.style.height=h+'px';#}
+			}
+		}
+		iIntervalId=setInterval(dmove,2);
+		}
+	function $D2(){
+		var d=$('class1content');
+		var h=d.offsetHeight;
+		var maxh=300;
+		function dmove(){
+			h-=50;//层收缩速度
+			if(h<=0){
+				d.style.display='none';
+				clearInterval(iIntervalId);
+			}
+{#			else{#}
+{#			d.style.height=h+'px';#}
+{#			}#}
+		}
+		iIntervalId=setInterval(dmove,2);
+	}
+	function $use(){
+		var d=$('class1content');
+		var sb=$('stateBut');
+		if(d.style.display=='none'){
+			$D();
+			sb.innerHTML='折叠';
+		}
+		else{
+			$D2();
+			sb.innerHTML='展开';
+		}
+	}
+</script>
+
+{#表格相关设置#}
+<!-- CSS -->
+<link rel="stylesheet" href="/static/easydatatable/css/datatable.css" type="text/css" />
+<!-- EasyDatatable JS -->
+<script type="text/javascript" src="{% static 'easydatatable/easy.datatable-2.4.0.min.js'%}"></script>
+
+    <script type="text/javascript">
+     // 2. 设置参数（无需手动初始化）
+     DataTable.default_row=10;
+ </script>
+    <!-- EasyDatatable Language -->
+<script type="text/javascript" src="{% static 'easydatatable/lang/easy.datatable-lang-zh_CN.js'%}"></script>
+
+</head>
+<body>
+{% include 'jdshow/table.html' %}
+</body>
+</html>

@@ -1,0 +1,31 @@
+{#{% extends 'jdshow/index.html' %}#}
+{% include 'jdshow/navbar.html' %}
+{% include 'jdshow/echat.html' %}
+<table class="table table-bordered table-hover datatable easydatatable" id="datatable">
+<thead>
+    <tr>
+        <td>手机id</td>
+        <td>手机型号</td>
+        <td>商品地址</td>
+        <td>手机价格</td>
+        <td>评论数量</td>
+    </tr>
+</thead>
+<tbody>
+    {% for item in items %}
+    <tr>
+        <td><a href="{{ item.product_id }}">{{ item.product_id }}</a></td>
+        <td>{{ item.product_name }}</td>
+        <td>{{ item.product_url }}</td>
+        <td>{{ item.product_price }}</td>
+        <td>{{ item.all_comment }}</td>
+    </tr>
+    {% endfor %}
+
+
+
+
+</tbody>
+</table>
+
+{% include 'jdshow/paginator.html' %}

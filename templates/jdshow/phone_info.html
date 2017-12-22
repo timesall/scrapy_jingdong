@@ -1,0 +1,47 @@
+{#{% extends 'jdshow/table.html' %}#}
+{% block title %}手机详情{% endblock %}
+{% block content %}
+    <div style="background-color: lightsteelblue">
+    <div class="col-lg-12" style="background-color:lightblue">
+        <div class="col-lg-1">
+            <span>总的评论数</span>
+        </div>
+        <div class="col-lg-offset-8 col-lg-1">
+            <span>{{ data.comment_num }}</span>
+        </div>
+    </div>
+    <div class="col-lg-12" style="background-color:lightblue">
+        <hr>
+        <div class="col-lg-4" style="text-align: center">
+            <p>好评数{{ data.good }}</p>
+            <p>好评率{{ data.good_rate }}</p>
+        </div>
+        <div class="col-lg-4" style="text-align: center">
+            <p>好评数{{ data.gen }}</p>
+            <p>好评率{{ data.gen_rate }}</p>
+        </div>
+        <div class="col-lg-4" style="text-align: center">
+             <p>好评数{{ data.bad }}</p>
+            <p>好评率{{ data.bad_rate }}</p>
+        </div>
+    </div>
+
+    <table class="table table-bordered">
+        {% for item in items %}
+            <tr>
+                <td>{{ item.product_id }}</td>
+                <td>{{ data.url }}</td>
+                <td>{{ item.shop_name }}</td>
+                <td>{{ item.product_name }}</td>
+                <td>{{ item.product_price }}</td>
+                <td>{{ item.all_comment }}</td>
+                <td>{{ item.good_comment }}</td>
+                <td>{{ item.gen_comment }}</td>
+                <td>{{ item.bad_comment }}</td>
+                <td>{{ item.add_comment }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    </div>
+{% endblock %}
+{% block footer %}{% endblock %}

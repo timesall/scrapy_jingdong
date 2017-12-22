@@ -1,0 +1,301 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+    <link rel="stylesheet" href="static/easydatatable/css/datatable.css" type="text/css" id="themecss"></link>
+<script type="text/javascript" src="static/easydatatable/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="static/easydatatable/easy.datatable-2.4.0.min.js"></script>
+<script type="text/javascript" src="static/easydatatable/lang/easy.datatable-lang-zh_CN.js"></script>
+
+<script type="text/javascript">
+	//为datatable4自定义排序指示符
+	DataTable.setOrder({
+				order_default:"<img src='easydatatable/images/order_default.gif'/>",
+				order_up:"<img src='easydatatable/images/order_up.gif'/>",
+				order_down:"<img src='easydatatable/images/order_down.gif'/>"
+			},
+			"datatable4");
+
+	$(function() {
+		//EasyDataTable Code
+		//2. 指定分页主题（SIMPLE） + 加入Loading提示 + 带复选框
+		DataTable.load("datatable2", {
+			"pagetheme" : "SIMPLE",
+			"loading" : "show"
+		});
+
+		//4. 带start和end数据加载事件处理函数的分页
+		//实现初始化loading效果，加载完成后隐藏loading，显示初始数据
+		DataTable
+				.load(
+						"datatable4",
+						{
+							loading : "<div><img src=\"easydatatable/images/loading.gif\"/><br/>数据正在加载中……</div>",
+							//数据每一次加载开始时执行(表格对象；true代表第一次加载，false代表分页加载)
+							/*
+							o：当前表格对象
+							 initFlag：true代表第一次加载数据（初始化表格），false代表分页加载
+							 */
+							"start" : function(dataTableObj, initFlag) {
+								if (initFlag) { //第一次加载，未初始化
+									//	console.info('init start...');
+									$("#loading").show(); //显示初始加载提示
+									$("#dataDiv").hide(); //隐藏数据div
+									$("#dataPageDiv").hide(); //隐藏分页div
+								} else {
+									//console.info('load start...');
+
+								}
+
+							},
+							//数据每一次加载结束时执行(表格对象；true代表第一次加载，false代表分页加载)
+							"end" : function(dataTableObj, initFlag) { //true代表第一次候加载，false代表分页加载
+								if (initFlag) { //第一次加载，未初始化
+									//console.info('init end...');
+									$("#loading").hide(); //隐藏初始加载提示
+									$("#dataDiv").show(); //显示数据div
+									$("#dataPageDiv").show(); //显示分页div
+								} else {
+									//console.info('load end...');
+								}
+							}
+
+						});
+
+		//8.带搜索条件 + loading="hide"
+		DataTable.load("datatable8", {
+			"loading" : "hide"
+		});
+
+		//EasyDataTable 2.X
+		var jsonData = {
+			"rowPerPage" : 10,
+			"pageNo" : 1,
+			"data" : [ {
+				"id" : 1,
+				"name" : "USER_1",
+				"info" : "INFO_1"
+			}, {
+				"id" : 2,
+				"name" : "USER_2",
+				"info" : "INFO_2"
+			}, {
+				"id" : 3,
+				"name" : "USER_3",
+				"info" : "INFO_3"
+			}, {
+				"id" : 4,
+				"name" : "USER_4",
+				"info" : "INFO_4"
+			}, {
+				"id" : 5,
+				"name" : "USER_5",
+				"info" : "INFO_5"
+			}, {
+				"id" : 6,
+				"name" : "USER_6",
+				"info" : "INFO_6"
+			}, {
+				"id" : 7,
+				"name" : "USER_7",
+				"info" : "INFO_7"
+			}, {
+				"id" : 8,
+				"name" : "USER_8",
+				"info" : "INFO_8"
+			}, {
+				"id" : 9,
+				"name" : "USER_9",
+				"info" : "INFO_9"
+			}, {
+				"id" : 10,
+				"name" : "USER_10",
+				"info" : "INFO_10"
+			}, {
+				"id" : 11,
+				"name" : "USER_11",
+				"info" : "INFO_11"
+			}, {
+				"id" : 12,
+				"name" : "USER_12",
+				"info" : "INFO_12"
+			}, {
+				"id" : 13,
+				"name" : "USER_13",
+				"info" : "INFO_13"
+			}, {
+				"id" : 14,
+				"name" : "USER_14",
+				"info" : "INFO_14"
+			}, {
+				"id" : 15,
+				"name" : "USER_15",
+				"info" : "INFO_15"
+			}, {
+				"id" : 16,
+				"name" : "USER_16",
+				"info" : "INFO_16"
+			}, {
+				"id" : 17,
+				"name" : "USER_17",
+				"info" : "INFO_17"
+			}, {
+				"id" : 18,
+				"name" : "USER_18",
+				"info" : "INFO_18"
+			}, {
+				"id" : 19,
+				"name" : "USER_19",
+				"info" : "INFO_19"
+			}, {
+				"id" : 20,
+				"name" : "USER_20",
+				"info" : "INFO_20"
+			}, {
+				"id" : 21,
+				"name" : "USER_21",
+				"info" : "INFO_21"
+			}, {
+				"id" : 22,
+				"name" : "USER_22",
+				"info" : "INFO_22"
+			}, {
+				"id" : 23,
+				"name" : "USER_23",
+				"info" : "INFO_23"
+			}, {
+				"id" : 24,
+				"name" : "USER_24",
+				"info" : "INFO_24"
+			}, {
+				"id" : 25,
+				"name" : "USER_25",
+				"info" : "INFO_25"
+			}, {
+				"id" : 26,
+				"name" : "USER_26",
+				"info" : "INFO_26"
+			}, {
+				"id" : 27,
+				"name" : "USER_27",
+				"info" : "INFO_27"
+			}, {
+				"id" : 28,
+				"name" : "USER_28",
+				"info" : "INFO_28"
+			}, {
+				"id" : 29,
+				"name" : "USER_29",
+				"info" : "INFO_29"
+			}, {
+				"id" : 30,
+				"name" : "USER_30",
+				"info" : "INFO_30"
+			} ]
+		};
+		//10.JSON静态数据源加载 + 静态数据筛选查询排序 + 无分页 （2.X）
+		DataTable.staticLoad("datatable10", jsonData, {
+			"row" : 30
+		});
+		//11.JSON文件数据源加载 + All范围静态数据筛选查询排序  （2.X）
+		DataTable.fileLoad("datatable11", "easydatatable/jsonData.json");
+
+		//	静态数据源——数组数据集合
+		var arrayData={
+			data:[
+					[1,"Jay","I'm Jay"],
+					[2,"Jolin","I'm Jolin"],
+					[3,"Sheldon","I'm Sheldon"],
+					[4,"Penny","I'm Penny"],
+					[5,"Amy","I'm Amy"],
+					[6,"Jay2","I'm Jay"],
+					[7,"Jolin2","I'm Jolin"],
+					[8,"Sheldon2","I'm Sheldon"],
+					[9,"Penny2","I'm Penny"],
+					[10,"Amy2","I'm Amy"],
+					[11,"Jay3","I'm Jay"],
+					[12,"Jolin3","I'm Jolin"],
+					[13,"Sheldon3","I'm Sheldon"],
+					[14,"Penny3","I'm Penny"],
+					[15,"Amy3","I'm Amy"]
+				]
+		};
+
+		//13.静态数据源——数组数据集合  + All范围数据筛选 （2.X）
+		DataTable.staticLoad("datatable13", arrayData,{"row":5});
+
+	});
+</script>
+
+
+<link rel="stylesheet" href="resizable/jquery.resizableColumns.css" type="text/css"></link>
+<script type="text/javascript" src="resizable/jquery.resizableColumns.js"></script>
+
+<script type="text/javascript">
+	 $(function(){
+	   $("#datatable12").resizableColumns();
+	 });
+</script>
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+
+<div class="tabH">默认FULL分页主题 + 复选框 + index，count内置属性使用</div>
+
+<form action="easydatatable/zh-cn/doPage2.jsp" name="myform">
+	<div style="height: 260px;overflow:auto;width: 780px;"  class="dataTableScrollDiv">
+		<table class="datatable easydatatable" id="datatable" width="100%" align="center">
+			<tr>
+				<!-- checkbox -->
+				<th width="40"><input type="checkbox" check="mychk" /> <!-- CheckAll -->
+				</th>
+				<!-- datatableIndex,datatableCount -->
+				<th width="80">count</th>
+				<th width="80">index</th>
+				<th width="80">{index+1}</th>
+				<th width="100">id</th>
+				<th width="100" sort="name">name</th>
+				<th width="100" sort="info">info</th>
+				<th>operation</th>
+			</tr>
+			<!-- Data Show Row-->
+
+			<tr style="display: none;">
+				<td style="text-align:center;height: 45px;"><input type="checkbox" name="mychk"
+					value="{id }" /></td>
+				<td align="center">{datatableCount }</td>
+				<td align="center">{datatableIndex }</td>
+				<td align="center">{datatableIndex+1 }</td>
+				<td style="text-align:center;color:#00f">No.{id}</td>
+				<td align="center">{name}</td>
+				<td>{info}</td>
+				<td align="center"><a href="doUser.jsp?o=show&id={id }">show</a> <a
+					href="doUser.jsp?o=edit&id={id }">edit</a> <a href="doUser.jsp?o=delete&id={id }">delete</a></td>
+			</tr>
+		</table>
+	</div>
+	<div class="panelBar" style="width: 780px;" size="5,10,30,50"></div>
+</form>
+
+
+
+
+
+
+</body>
+</html>
